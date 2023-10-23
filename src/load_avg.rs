@@ -37,7 +37,7 @@ mod tests {
     use tokio;
     use crate::handle_request;
 
-    const TEST_SERVER_ADDR: &str = "127.0.0.1:8081"; // Use a different port for testing
+    const TEST_SERVER_ADDR: &str = "127.0.0.1:8085"; // Use a different port for testing
 
     #[tokio::test]
     async fn test_load_average_endpoint() {

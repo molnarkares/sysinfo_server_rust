@@ -34,7 +34,7 @@ mod tests {
     use tokio;
     use crate::handle_request;
 
-    const TEST_SERVER_ADDR: &str = "127.0.0.1:8082"; // Use a different port for testing
+    const TEST_SERVER_ADDR: &str = "127.0.0.1:8081"; // Use a different port for testing
 
     #[tokio::test]
     async fn test_boot_time_endpoint() {
@@ -86,15 +86,3 @@ mod tests {
         }
     }
 }
-//     // Check if the received JSON contains expected keys
-//     let response = &response_json["boot_time"];
-//     assert!(response.is_number());
-//     // Ensure the returned boot time is a valid timestamp and it's in the past
-//     // assert!(response > 0.0);
-//     // let current_time = std::time::SystemTime::now()
-//     //     .duration_since(std::time::SystemTime::UNIX_EPOCH)
-//     //     .expect("Time went backwards")
-//     //     .as_secs_f64();
-//     // assert!(response <= current_time);
-// }
-//
