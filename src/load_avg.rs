@@ -7,8 +7,8 @@ use serde_json::json;
 use sysinfo::{System, SystemExt};
 
 pub(crate) async fn handle_load_average(system: Arc<Mutex<System>>) -> Result<Response<Body>, hyper::Error> {
-    let system = system.lock().unwrap();
-
+    let mut system = system.lock().unwrap();
+    system.refresh_system();
     // #[cfg(unix)]
         let load_average = system.load_average();
 
