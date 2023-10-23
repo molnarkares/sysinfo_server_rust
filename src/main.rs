@@ -6,6 +6,7 @@ mod hostinfo;
 mod users;
 mod networks;
 mod load_avg;
+mod boot_time;
 
 use std::convert::Infallible;
 use std::net::{IpAddr, SocketAddr};
@@ -59,6 +60,7 @@ async fn handle_request(req: Request<Body>, system: Arc<Mutex<System>>) -> Resul
         (&Method::GET, "/users") => users::handle_users(system).await,
         (&Method::GET, "/networks") => networks::handle_networks(system).await,
         (&Method::GET, "/load_average") => load_avg::handle_load_average(system).await,
+        (&Method::GET, "/boot_time") => boot_time::handle_boot_time(system).await,
         _ => {
             let response = Response::builder()
                 .status(StatusCode::NOT_FOUND)
