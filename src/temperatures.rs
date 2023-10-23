@@ -6,8 +6,7 @@ use sysinfo::{ComponentExt, System, SystemExt};
 
 pub(crate) async fn handle_temperatures(system: Arc<Mutex<System>>) -> Result<Response<Body>, hyper::Error> {
     let mut system = system.lock().unwrap();
-    system.refresh_all();
-
+    system.refresh_components();
     let temperatures: Vec<_> = system.components().iter().filter_map(|component| {
         let label = component.label();
         let temperature = component.temperature();

@@ -8,8 +8,7 @@ use sysinfo::{System, SystemExt};
 
 pub(crate) async fn handle_system_info(system: Arc<Mutex<System>>) -> Result<Response<Body>, hyper::Error> {
     let mut system = system.lock().unwrap();
-    system.refresh_all();
-
+    system.refresh_system();
     let system_data = json!([{
         "kernel_version": system.kernel_version().unwrap_or_else(|| "N/A".to_string()),
         "os_version": system.os_version().unwrap_or_else(|| "N/A".to_string()),

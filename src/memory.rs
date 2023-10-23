@@ -8,7 +8,6 @@ use sysinfo::{System, SystemExt};
 pub(crate) async fn handle_memory(system: Arc<Mutex<System>>) -> Result<Response<Body>, hyper::Error> {
     let mut system = system.lock().unwrap();
     system.refresh_memory();
-
     let memory_info = json!([{
         "available_memory": system.available_memory(),
         "free_memory": system.free_memory(),

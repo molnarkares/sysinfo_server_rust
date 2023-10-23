@@ -3,6 +3,7 @@ mod disks;
 mod memory;
 mod temperatures;
 mod sys_pubinfo;
+mod users;
 
 use std::convert::Infallible;
 use std::net::{IpAddr, SocketAddr};
@@ -53,6 +54,7 @@ async fn handle_request(req: Request<Body>, system: Arc<Mutex<System>>) -> Resul
         (&Method::GET, "/sysinfo") => sys_pubinfo::handle_system_info(system).await,
         (&Method::GET, "/disks") => disks::handle_disks(system).await,
         (&Method::GET, "/cpus") => cpus::handle_cpus(system).await,
+        (&Method::GET, "/users") => users::handle_users(system).await,
         _ => {
             let response = Response::builder()
                 .status(StatusCode::NOT_FOUND)
