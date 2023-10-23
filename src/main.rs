@@ -2,7 +2,7 @@ mod cpus;
 mod disks;
 mod memory;
 mod temperatures;
-mod sys_pubinfo;
+mod hostinfo;
 mod users;
 mod networks;
 
@@ -52,7 +52,7 @@ async fn handle_request(req: Request<Body>, system: Arc<Mutex<System>>) -> Resul
     match (req.method(), req.uri().path()) {
         (&Method::GET, "/memory") => memory::handle_memory(system).await,
         (&Method::GET, "/temperatures") => temperatures::handle_temperatures(system).await,
-        (&Method::GET, "/sysinfo") => sys_pubinfo::handle_system_info(system).await,
+        (&Method::GET, "/sysinfo") => hostinfo::handle_system_info(system).await,
         (&Method::GET, "/disks") => disks::handle_disks(system).await,
         (&Method::GET, "/cpus") => cpus::handle_cpus(system).await,
         (&Method::GET, "/users") => users::handle_users(system).await,
