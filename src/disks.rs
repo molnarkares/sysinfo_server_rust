@@ -36,7 +36,7 @@ mod tests {
     use tokio;
     use crate::handle_request;
 
-    const TEST_SERVER_ADDR: &str = "127.0.0.1:8087"; // Use a different port for testing
+    const TEST_SERVER_ADDR: &str = "127.0.0.1:8091"; // Use a different port for testing
 
     #[tokio::test]
     async fn test_disks_endpoint() {
