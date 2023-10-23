@@ -68,6 +68,9 @@ mod tests {
             assert!(disk_obj.contains_key("total_space"));
             assert!(disk_obj.contains_key("available_space"));
 
+            assert!(disk_obj["device_name"].is_string());
+            assert!(disk_obj["file_system"].is_string());
+
             let total_space = disk_obj.get("total_space").and_then(|v| v.as_u64()).expect("`total_space` is not an integer");
             let available_space = disk_obj.get("available_space").and_then(|v| v.as_u64()).expect("`available_space` is not an integer");
             assert!(available_space <= total_space);
