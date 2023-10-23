@@ -4,6 +4,7 @@ mod memory;
 mod temperatures;
 mod sys_pubinfo;
 mod users;
+mod networks;
 
 use std::convert::Infallible;
 use std::net::{IpAddr, SocketAddr};
@@ -55,6 +56,7 @@ async fn handle_request(req: Request<Body>, system: Arc<Mutex<System>>) -> Resul
         (&Method::GET, "/disks") => disks::handle_disks(system).await,
         (&Method::GET, "/cpus") => cpus::handle_cpus(system).await,
         (&Method::GET, "/users") => users::handle_users(system).await,
+        (&Method::GET, "/networks") => networks::handle_networks(system).await,
         _ => {
             let response = Response::builder()
                 .status(StatusCode::NOT_FOUND)
